@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { createdUserDto } from './dto/user.dto'
 
@@ -16,6 +16,11 @@ export class UsersController {
     @Post()
     createdUser(@Body() newUser: createdUserDto){
         return this.usersService.createdUser(newUser.nombre, newUser.apellido, newUser.edad, newUser.correo)
+    }
+
+    @Delete(':id')
+    deletedUser(@Param('id') id: string){
+        this.usersService.deletedUser(id)
     }
 
 }

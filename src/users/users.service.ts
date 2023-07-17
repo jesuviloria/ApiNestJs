@@ -34,6 +34,8 @@ export class UsersService {
         return user
     }
     updatedUser() {}
-    deletedUser() {}
+    deletedUser(id: string) {
+        this.users = this.users.filter(user => user.id !== id)
+    }
     
 }
