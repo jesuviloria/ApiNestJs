@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Patch } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { createdUserDto } from './dto/user.dto'
+import { createdUserDto, updatedUserDto } from './dto/user.dto'
 
 @Controller('users')
 export class UsersController {
@@ -21,6 +21,11 @@ export class UsersController {
     @Delete(':id')
     deletedUser(@Param('id') id: string){
         this.usersService.deletedUser(id)
+    }
+
+    @Patch(':id')
+    updatedUser(@Param('id') id: string, @Body() updatedFileds: updatedUserDto){
+        return this.usersService.updatedUser(id, updatedFileds)
     }
 
 }
